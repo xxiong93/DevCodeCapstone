@@ -1,0 +1,42 @@
+National Parks App 
+
+----APIs-----
+https://www.nps.gov/subjects/developer/api-documentation.htm#/
+google maps geocoding and google maps API
+
+----IDEAS-----
+- enter criteria for park, like geysers, mountains, 
+	- possible show recommended places based on a search criteria?
+- home page of usa with places that have been visited
+
+- ability to log in and store saved data for users
+	- As a user, I want to be able to register, log in, and log out to know my personal information is secure.(using jwt, mongodb, mongoose, node, express)
+
+- save personal info about parks like text or images??
+	- as a traveller i'd like to be able to upload images i have taken to this application
+	(be able to organize these pictures)
+	- As a traveler, I want to be able to upload and store images on the application to be able to view at any time. (using node,express,mongodb,mongoose)
+
+- keep track of a national park that has been visited
+	- as a traveler i want to be able to make a list of parks i want to visit
+	- As a traveler I want to be able plan out a trip to multiple parks that I want to visit within a specific state. (using google maps api, nps api)
+	- as a traveler i want to mark off a park from my list that i have visited 
+	- As a user I want to know which parks I have visited and which parks I have not within a specific state. (using node,express,mongodb,mongoose, google maps api, and nps api)
+
+- get info about a park: hours of op, admission fees, campsites, etc.
+	- as a traveler i'd like to know when a park is open and closes on any given day, admission fees, campsites
+	- As a traveler I want to know general information about a specific park related to fees of admission, hours of operation, amenities, and etc. so I
+	can plan a trip. (using nps api)
+
+- activities available to do at a park
+	- as a traveler i'd like to see a list of popular activities to do at the selected park
+	- As a traveler I want to be able to search for things to do at the park I will be visiting. (using nps api)
+
+- ability to search for parks
+	- as a traveler i would like to see/know how many national parks are in an individual state
+	- As a traveler I want to be able search for and know how many national parks are in an individual state on a map.  (using nps api, google maps api)
+
+- possibly be able to view location??? 
+	- as a traveler i'd like to see a current map of the park i am currently visiting
+	- As a traveler I want to know my location within the park that I
+- 
