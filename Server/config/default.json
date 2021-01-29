@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://RamenShop93:Projectramen93%23@cluster0.ugyjz.mongodb.net/CAPSTONEPROJECT?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://RamenShop93:Projectramen93%23@cluster0.ugyjz.mongodb.net/CAPSTONEPROJECT?retryWrites=true&w=majority",
+    "jwtSecret": "JWT SECRET"
 }

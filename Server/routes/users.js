@@ -1,10 +1,12 @@
 const { User, validateUser } = require('../models/user');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();
 
 router.get("/", async (req, res) => {
     // console.log("I hit the new endpoint");
-
+    // what am i trying to grab here
+    // i am trying to grab the user by the username and email on record
     try {
         const users = await User.find();
         return res.send(users);
