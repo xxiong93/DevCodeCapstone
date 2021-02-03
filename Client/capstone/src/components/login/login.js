@@ -7,7 +7,7 @@ function Login (event) {
     //i need a function for login
     //i need to handle change of info in the email and password form
     //i need to handle the submit of data in the form field
-    const [login, setLogin] = useState({ email: '', password: '', error: '' })
+    const [login, setLogin] = useState({ email: '', password: '' });
     //i  need a function that will retrieve the user's info from server
         //this would be an axios get request
         //i need to get the user's username and password
@@ -15,7 +15,7 @@ function Login (event) {
             const newurl = API_BASE_URL;
             axios({
                 method: 'get',
-                url: newurl,
+                url: newurl
             }).then((res) => {
                 // res.data.forEach(user => {
                 //     if(login.email === user.email){
@@ -31,7 +31,7 @@ function Login (event) {
     const handleChange = (event) => {
         let data = event.target.name;
         setLogin(login => ({...login,
-            [data]: event.target.value
+            [event.target.name]: event.target.value
         }))
     }
 
@@ -62,7 +62,7 @@ function Login (event) {
                 <input 
                     type = "text"
                     id = "loginEmail"
-                    name = "login"
+                    name = "email"
                     className = "form-control text-box"
                     value = {login.email}
                     onChange = {handleChange}
