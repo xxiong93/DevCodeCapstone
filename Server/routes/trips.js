@@ -1,4 +1,4 @@
-const { Trip, validateTrip} = require('../models/trip');
+const { Trip, validateTrip } = require('../models/trip');
 const express = require('express');
 const router = express.Router();
     
@@ -31,5 +31,6 @@ router.post('/new', async (req, res) => {
         console.log(error);
     };
 });
+// i need this to remove a trip option
 
 module.exports = router;

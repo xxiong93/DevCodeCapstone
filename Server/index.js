@@ -7,6 +7,7 @@ const config = require('config');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
 const trip = require('./routes/trips');
+const picture = require('./routes/pictures');
 
 connectDB();
 
@@ -15,8 +16,7 @@ app.use(express.json());
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/trips', trip);
-
-
+app.use('/api/pictures', picture);
 
 
 const port = process.env.PORT || 5000;
