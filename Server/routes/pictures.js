@@ -6,16 +6,8 @@ const multer = require('multer');
 // const path = require('path');
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-});
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 router.get('/', (req, res) => {
     Picture.find({}, (error, items) => {
@@ -29,7 +21,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', upload.single(), async (req,res) => {
+router.post('/',  async (req,res) => {
     try {
         // const {error} = validatePicture(req.body);
         // if(error)
@@ -39,7 +31,7 @@ router.post('/', upload.single(), async (req,res) => {
             name: req.body.name,
             description: req.body.description,
             image: {
-                data: req.body.buffer.toString(),
+                data: req.body.buffer,
                 contentType: 'image/png'
             }
         });
