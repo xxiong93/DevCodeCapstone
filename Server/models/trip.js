@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 const config = require('config');
 
-//i need a schema that will take the state and park name
 
 const tripSchema = new mongoose.Schema({
     parkName: { type: String, required: true, minlength: 5 , maxlength: 100 },
