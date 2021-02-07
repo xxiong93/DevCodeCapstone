@@ -4,8 +4,8 @@ const config = require('config');
 
 //buffer will take image that is uploaded and "convert" it to data that can be used
 const pictureSchema = new mongoose.Schema({
-    name: { data: String },
-    description: { data: String },
+    name: { type: String },
+    description: { type: String },
     image: { data: Buffer, contentType: String},
     // imageUrl: { data: String }
 
