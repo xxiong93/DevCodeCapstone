@@ -5,7 +5,7 @@ const config = require('config');
 
 const tripSchema = new mongoose.Schema({
     parkName: { type: String, required: true, maxlength: 100 },
-    state: { type: String, required: false, }
+    stateName: { type: String, required: false, }
 });
 
 const Trip = mongoose.model('Trip', tripSchema);
@@ -13,7 +13,7 @@ const Trip = mongoose.model('Trip', tripSchema);
 function validateTrip(trip) {
     const schema = Joi.object({
         parkName: Joi.string().required().max(100),
-        state: Joi.string().required()
+        stateName: Joi.string().required()
     });
     return schema.validate(trip);
 }
@@ -22,6 +22,6 @@ function validateTrip(trip) {
 //yes i need to validate these in order to keep track of which park has been visited
 
 
-module.exports = Trip;
-module.exports = tripSchema;
-module.exports = validateTrip;
+exports.Trip = Trip;
+exports.tripSchema = tripSchema;
+exports.validateTrip = validateTrip;

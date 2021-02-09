@@ -22,7 +22,7 @@ router.post('/new', async (req, res) => {
         
         newTrip = new Trip ({
             parkName: req.body.parkName,
-            state: req.body.state
+            stateName: req.body.state
         });
 
         await newTrip.save();   
@@ -31,6 +31,5 @@ router.post('/new', async (req, res) => {
         console.log(error);
     };
 });
-// i need this to remove a trip option
 
 module.exports = router;
