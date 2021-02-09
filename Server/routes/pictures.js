@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
         //     res.render('imagesPage', { items: items });
         // }
         return res.send(images)
+        
     }
     catch(error){
         return res.status(500).send(`Internal Server Error`)
@@ -37,8 +38,8 @@ router.post('/upload',  async (req,res) => {
             name: req.body.name,
             description: req.body.description,
             image: {
-                data: req.body.buffer,
-                contentType: 'image/png'
+                // data: req.body.buffer,
+                // contentType: 'image/png'
             }
         });
 
@@ -50,6 +51,6 @@ router.post('/upload',  async (req,res) => {
     }
 
 })
-
+// console.log(Picture);
 
 module.exports = router;

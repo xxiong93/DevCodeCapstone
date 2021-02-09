@@ -21,7 +21,8 @@ const Picture = mongoose.model('picture', pictureSchema);
 //     return schema.validate(picture);
 // }
 
+console.log(module);
 
-exports.Picture = Picture;
+module.exports = Picture;
 // exports.validatePicture = validatePicture;
-exports.pictureSchema = pictureSchema;
+//exports.pictureSchema = pictureSchema;
