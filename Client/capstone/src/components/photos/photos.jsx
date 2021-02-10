@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { CLIENT_RENEG_LIMIT } from 'tls';
 import { API_PICTURE_URL } from '../../api/api.js';
 
 class ImageUpload extends Component {
@@ -18,49 +17,39 @@ class ImageUpload extends Component {
         this.SaveSubmit = this.SaveSubmit.bind(this);
     }
 
-    SaveSubmit(e) {
-        e.preventDefault();
+    SaveSubmit(event) {
+        event.preventDefault();
         // console.log(this.state.imagePreview_Url);
-        //TODO - save > this.state.imagePreview_Url in you DB using your API logic.
-		// const newurl = API_PICTURE_URL + '/upload';
+		const newurl = API_PICTURE_URL + '/upload';
 		// const newfile = this.state.file;
         const formData = new FormData();
-     const imageInfo = formData.append('image', this.state.file, this.state.file.name);
+        formData.append('name', this.state.file, this.state.file.name);
        console.log("line 29", this.state.file.name)
-		axios.post('http://localhost:5000/api/pictures/upload', imageInfo)
-            .then(response => console.log(response))
+       console.log(formData);
+		axios.post(newurl, formData)
+            .then(response => console.log('line 30' + response))
             .catch(err => {
                 console.log(err)
             })
-            console.log("hit")
+            console.log("hit line 34")
 			// .then(response => this.setState({newfile: response.data.id}));
 			
 	}
 
-    handleImageChange(e) {
-        e.preventDefault();
-        // let reader = new FileReader();
-        // let file = e.target.files[0];
-        // console.log(e.target.files[0]);
-        // reader.onloadend = () => {
-        //     this.setState({
-        //         file: file,
-        //         imagePreview_Url: reader.result
-        //     });
-            
-        // }
-        // reader.readAsDataURL(file)
+    handleImageChange(event) {
+        event.preventDefault();
+
         this.setState({
-            file: e.target.files[0]
+            file: event.target.files[0]
         })
-        console.log(e.target.files[0])
+        console.log(event.target.files[0])
     }
 
     getImage(){
 
         axios.get('http://localhost:5000/api/pictures')
         .then(data => {
-            // this.setState({file:this.state.fildata});
+            // this.setState({file:this.state.filedata});
             console.log(data);
         }).catch(error => console.log(error)
 
@@ -85,3 +74,39 @@ class ImageUpload extends Component {
     }
 }
 export default ImageUpload;
+
+
+
+
+        // let reader = new FileReader();
+        // let file = e.target.files[0];
+        // console.log(e.target.files[0]);
+        // reader.onloadend = () => {
+        //     this.setState({
+        //         file: file,
+        //         imagePreview_Url: reader.result
+        //     });
+            
+        // }
+        // reader.readAsDataURL(file)
+
+        // const [file, setFile] = useState();
+        // const [filename, setFilename] = useState();
+
+        // handleChange(event) => {
+                // event.preventDefault();
+        //     setFile(e.target.files[0]);
+        // }
+
+        // handleSubmit = event => {
+        //     event.preventDefault();
+
+        //     const newurl = API_PICTURE_URL + '/upload';
+
+        //     const formData = new FormData();
+        //     formData.append('image', file, this.state.file.name);
+
+        // }
+
+
+

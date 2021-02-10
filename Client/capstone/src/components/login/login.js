@@ -4,13 +4,7 @@ import {API_BASE_URL, API_LOGIN_URL} from '../../api/api.js';
 
 
 function Login (event) {
-    //i need a function for login
-    //i need to handle change of info in the email and password form
-    //i need to handle the submit of data in the form field
     const [login, setLogin] = useState({ email: '', password: '' });
-    //i  need a function that will retrieve the user's info from server
-        //this would be an axios get request
-        //i need to get the user's username and password
         function getUser(){
             const newurl = API_BASE_URL;
             axios({
@@ -33,6 +27,7 @@ function Login (event) {
         setLogin(login => ({...login,
             [event.target.name]: event.target.value
         }))
+        console.log(login);
     }
 
     const handleSubmit = (event) => {

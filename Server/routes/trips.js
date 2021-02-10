@@ -22,7 +22,7 @@ router.post('/new', async (req, res) => {
         
         newTrip = new Trip ({
             parkName: req.body.parkName,
-            stateName: req.body.state
+            stateName: req.body.stateName
         });
 
         await newTrip.save();   
