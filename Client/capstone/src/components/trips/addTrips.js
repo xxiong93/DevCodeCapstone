@@ -43,19 +43,17 @@ function NewTrip() {
     //check 
     axios.get('http://localhost:5000/api/trips')
         .then(response => {
-            // let getTrips = [];
-            setAllTrips({allTrips: response.data})
-            let getTrips = allTrips.map((item, index, array)=>{
-                return getTrips.item
-            });
-            console.log(allTrips);
-            console.log(getTrips.item);
+            setAllTrips(response.data)
+
+            console.log(allTrips[1].parkName);
+            // console.log(allTrips);
             // console.log(response.data);
-            // const getTrips = allTrips.map(() => {
-            //     return allTrips.parkName;
-            //     console.log(allTrips.parkName);
-            //     console.log('line 53');
-            // })
+            const getTrips = allTrips.map((item, index, array) => {
+                return item.parkName;
+            })
+            console.log(getTrips);
+            console.log('line 53');
+            return getTrips
         })
         .catch(error => {
             console.log(error);
