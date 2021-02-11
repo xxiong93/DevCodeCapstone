@@ -48,9 +48,10 @@ class ImageUpload extends Component {
     getImage(){
 
         axios.get('http://localhost:5000/api/pictures')
-        .then(data => {
-            // this.setState({file:this.state.filedata});
-            console.log(data);
+        .then(response => {
+            this.setState(this.state.file=response.data);
+            console.log(response);
+            console.log(this.state.file)
         }).catch(error => console.log(error)
 
         )

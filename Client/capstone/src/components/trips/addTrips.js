@@ -45,15 +45,18 @@ function NewTrip() {
         .then(response => {
             setAllTrips(response.data)
 
-            console.log(allTrips[1].parkName);
+            console.log(allTrips[4].parkName);
             // console.log(allTrips);
             // console.log(response.data);
-            const getTrips = allTrips.map((item, index, array) => {
+            const getParks = allTrips.map((item, index, array) => {
                 return item.parkName;
             })
-            console.log(getTrips);
+            const getStates = allTrips.map((item, index, array) => {
+                return item.stateName;
+            })
+            console.log(getParks[1] + ' ' + getStates[1]);
             console.log('line 53');
-            return getTrips
+            return (getParks, getStates)
         })
         .catch(error => {
             console.log(error);
