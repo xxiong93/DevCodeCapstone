@@ -7,6 +7,7 @@ function NewTrip() {
 
     const [trip, setTrip] = useState({parkName: '', stateName: ''});
     const [allTrips, setAllTrips] = useState();
+    const [loading, setLoading] = useState(true);
 
 
     const handleChange = (event) => {
@@ -34,6 +35,7 @@ function NewTrip() {
     }
     useEffect(() => {
         showTrips();
+        setLoading(false);
         // console.log('good here');
     }, [])
 
@@ -76,12 +78,12 @@ function NewTrip() {
             </form>
             </div>
             <div className='showTrips' id='displayTrips' >
-                <DisplayTrips allTrips={allTrips} hello={'hello'}/>
+                {console.log(allTrips)}
+               {loading ? <div>loading...</div> : <DisplayTrips allTrips={allTrips} hello={'hello table'}/>}
             </div>
         </div>
 
     )
-    // parkName= {allTrips.parkName} stateName={allTrips.stateName}
     }
 
 

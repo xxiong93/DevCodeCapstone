@@ -1,48 +1,56 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import {NPS_BASE_URL} from '../../../api/api';
+// import React, {useState, useEffect} from 'react';
+// import axios from 'axios';
+// import {NPS_BASE_URL} from '../../api/api';
+// import {NPS_KEY} from '../../../src/keys.js';
 
 
-function SearchActivities () {
+// function SearchActivities () {
 
-    const [search, setSearch] = useState();
+//     const [search, setSearch] = useState();
 
 
-    const getActivities = (event) => {
-        const npsUrl = NPS_BASE_URL+'thingstodo';
+//     const getActivities = () => {
+//         const npsUrl = `https://developer.nps.gov/api/v1/thingstodo?stateCode=${}&api_key=atJaeoob0GDLz2RZbFc2s6IENE8uJOEpJJ8Kyesz`;
 
-        axios.get(npsUrl).then(response => {
-            setSearch(response.data)
-            console.log(search);
-        }).catch(error=>{
-            console.log(error);
-        })
-    }
+//         axios.get(npsUrl).then(response => {
+//             setSearch(response.data)
+//             console.log(search);
+//         }).catch(error=>{
+//             console.log(error);
+//         })
+//         return search
+//     }
 
-    const handleChange = (event) =>{
-        const value = event.target.value;
-        setSearch(event.target.value);
-        if(value == null){
-            return (error)
-        }
+//     const handleChange = (event) =>{
+//         const data = event.target.value;
+//         setSearch(event.target.value);
+//         console.log(data);
+     
 
-    }
+//     }
     
-
-    return (
-        <div>
-            <form>
-                <label>
-                    <input className='search-activities' id='search' onChange={handleChange}>
-
-                    </input>
-                </label>
-            </form>
-        </div>
-    )
-
-}
+//     const handleSubmit = (event) =>{
+//         event.preventDefault();
+//         getActivities();
 
 
+//     }
+//     // useEffect(() => {
+//     //     getActivities();
+//     // }, [])
 
-export default SearchActivity;
+//     return (
+//         <div>
+//             <form onSubmit={handleSubmit}>
+//                 <label className='search-label' >Search Activities</label>
+//                 <input className='search-input' id='search' onChange={handleChange}></input>
+                
+//             </form>
+//         </div>
+//     )
+
+// }
+
+
+
+// export default SearchActivities;
