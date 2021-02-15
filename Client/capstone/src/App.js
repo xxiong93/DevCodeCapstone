@@ -2,7 +2,7 @@ import React from 'react';
 import Login from './components/login/login.js';
 import Photos from './components/photos/photos.jsx';
 import NewTrip from './components/trips/addTrips.js';
-// import SearchActivities from './components/search/searchActivities.js';
+import SearchActivities from './components/search/searchActivities.js';
 import Location from './components/location/location.js';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
             <Login/>
             <Photos/>
             <NewTrip/>
-            {/* <SearchActivities/> */}
+            <SearchActivities/>
             <Location/>
         </div>
         

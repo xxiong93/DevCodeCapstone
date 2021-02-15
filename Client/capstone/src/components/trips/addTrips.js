@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { API_TRIP_URL } from '../../api/api.js';
 import DisplayTrips from './displayTrips.js';
+import axios from 'axios';
+
 
 function NewTrip() {
 
@@ -11,6 +12,7 @@ function NewTrip() {
 
 
     const handleChange = (event) => {
+        event.preventDefault();
         let data = event.target.name;
         setTrip(trip =>({...trip,
             [event.target.name]: event.target.value}))
@@ -26,20 +28,19 @@ function NewTrip() {
             parkName: trip.parkName,
             stateName: trip.stateName
         }).then(response => {
-            // console.log(response);
-            // console.log('good');
+            console.log(response)
         }).catch(error => {
             console.log(error);
-            // console.log("not good");
         });
     }
+
     useEffect(() => {
         showTrips();
         setLoading(false);
-        // console.log('good here');
-    }, [])
 
-    const showTrips = () => {
+    },[]);
+
+    const showTrips = (event) => {
     //use map() function for saving response data or use an array
     //look at axios and api calls to only disply the data i want to 
     //check 
@@ -48,8 +49,6 @@ function NewTrip() {
             setAllTrips(response.data)
 
             console.log(allTrips[4].parkName);
-            // console.log(allTrips);
-            // console.log(response.data);
             const getParks = allTrips.map((item, index, array) => {
                 return item.parkName;
             })
@@ -70,10 +69,9 @@ function NewTrip() {
         <div>
             <div>
             <form onSubmit={handleSubmit}>
-                <label className='park'>Park name</label>
-                <input type='text' name='parkName' id='newPark' value={trip.parkName} onChange={handleChange}></input>
-                <label className='state'>state</label>
-                <input type='text' name='stateName' id='newState' value={trip.stateName} onChange={handleChange}></input>
+                <input type='text' placeholder='Park Name' name='parkName' id='newPark' value={trip.parkName} onChange={handleChange}></input>
+                <br/>
+                <input type='text' placeholder='State' name='stateName' id='newState' value={trip.stateName} onChange={handleChange}></input>
                 <button type="submit" className='submit-button' onClick={handleSubmit}>Add</button>
             </form>
             </div>
