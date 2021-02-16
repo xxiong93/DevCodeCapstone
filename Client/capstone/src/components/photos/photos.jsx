@@ -62,10 +62,12 @@ class ImageUpload extends Component {
         return (
             <div style={{paddingTop:40}}>
                 <div>
-                    <input type="file" onChange={this.handleImageChange} />
-                    <button onClick={this.SaveSubmit}>Save/Upload Image in DB</button>
-                    <button onClick={this.getImage}>GEt Image </button>
-
+                    <form action='/upload' method="post" enctype="multipart/form-data">
+                        <input type="file" name="image" />
+                        <input type='submit'></input>
+                        {/* <button onClick={this.SaveSubmit}>Save/Upload Image in DB</button>
+                        <button onClick={this.getImage}>GEt Image </button> */}
+                    </form>
                 </div>
                 
                 <div>

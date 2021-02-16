@@ -25,4 +25,4 @@ const Picture = mongoose.model('picture', pictureSchema);
 
 exports.Picture = Picture;
 // exports.validatePicture = validatePicture;
-//exports.pictureSchema = pictureSchema;
+exports.pictureSchema = pictureSchema;

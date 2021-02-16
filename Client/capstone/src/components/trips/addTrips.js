@@ -34,11 +34,6 @@ function NewTrip() {
         });
     }
 
-    useEffect(() => {
-        showTrips();
-        setLoading(false);
-
-    },[]);
 
     const showTrips = (event) => {
     //use map() function for saving response data or use an array
@@ -65,6 +60,34 @@ function NewTrip() {
 
         // return (response.data)
     }
+
+    // const getParkNames = allTrips.map((item, index, array) => {
+    //     return item.parkName;
+    //     console.log(item.parkName);
+    // })
+    // const getStateNames = allTrips.map((item, index, array) => {
+    //     return item.stateName;
+    //     console.log(item.stateName);
+    // })
+
+    // const buildTable = () => {
+    //     const table = document.getElementById('tripTable')
+
+    //     for(let i=0; i<getParkNames.length; i++){
+    //         let row = `<tr>
+    //                         <td>${getParkNames[i]} ${getStateNames[i]}</td>
+    //                    <tr>
+    //                    `
+
+    //         table.innerHTML += row
+    //     }
+    // }
+   
+    useEffect(()=>{
+        showTrips();
+        setLoading(false);
+        // buildTable();
+    }, [])
     return(
         <div>
             <div>
@@ -78,6 +101,13 @@ function NewTrip() {
             <div className='showTrips' id='displayTrips' >
                 {console.log(allTrips)}
                {loading ? <div>loading...</div> : <DisplayTrips allTrips={allTrips} viewTrips={'Trips added to list'}/>}
+            </div>
+            <br/>
+            <div>
+                <table>
+                    <tbody id="tripTable">
+                    </tbody>
+                </table>
             </div>
         </div>
 

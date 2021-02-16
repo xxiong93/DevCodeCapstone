@@ -1,18 +1,24 @@
 const { Picture } = require("../models/picture");
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const multer = require('multer');
-// const fs = require('fs');
-// const path = require('path');
-
-
-
-// const upload = multer({ storage: storage });
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(error, 'photos')
+    },
+    filename: (req, file, callback) => {
+        console.log(file)
+        callback(error, Date.now() + path.extname(file.originalname))
+        
+    }
+})
+const upload = multer({storage: storage});
 
 router.get('/', async (req, res) => {
     try{
         console.log('hit');
-  const images = await Picture.find()
+        const images = await Picture.find()
         // if (error) {
         //     console.log(error);
         //     res.status(500).send('An error occurred', error);
@@ -28,29 +34,10 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/upload',  async (req,res) => {
-    try {
-        // const {error} = validatePicture(req.body);
-        // if(error)
-        //     return res.status(400).send(error);
-        console.log("hit")
-        photo = new Picture({
-            name: req.body.name,
-            description: req.body.description,
-            image: {
-                // data: req.body.buffer,
-                // contentType: 'image/png'
-            }
-        });
-
-        await photo.save();
-
-        return res.send(photo);
-    } catch (error) {
-        return res.status(500).send(`InternalServerError:${error}`);
-    }
+router.post('/upload', upload.single('image'), (req, res) => {
+        res.send("picture has been uploaded")
 
 })
-// console.log(Picture);
+
 
 module.exports = router;
