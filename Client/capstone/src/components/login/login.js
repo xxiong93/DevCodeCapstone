@@ -11,11 +11,11 @@ function Login (event) {
                 method: 'get',
                 url: newurl
             }).then((res) => {
-                // res.data.forEach(user => {
-                //     if(login.email === user.email){
-                //         event.setCurrentUser(user._id);                                                
-                //     }
-                // });
+                res.data.forEach(user => {
+                    if(login.email === user.email){
+                        event.setCurrentUser(user._id);                                                
+                    }
+                });
                 console.log(res.data);
             })
             console.log('getUser() Called')
@@ -30,7 +30,7 @@ function Login (event) {
         console.log(login);
     }
 
-    const handleSubmit = (event) => {
+    const handleLogin = (event) => {
         event.preventDefault();
         const newurl = API_LOGIN_URL + 'login';
         axios({
@@ -52,7 +52,8 @@ function Login (event) {
     }
     return(
         <div>
-            <form className = "login-form" onSubmit = {handleSubmit}>
+            <h1>Login</h1>
+            <form className = "login-form" onSubmit = {handleLogin}>
                 <label htmlFor = "loginEmail">Email</label>
                 <input 
                     type = "text"
@@ -75,7 +76,7 @@ function Login (event) {
                 >
 
                 </input>
-                <button type = "submit" className = "loginButton" onSubmit = {handleSubmit}>Login</button>
+                <button type = "submit" className = "loginButton" onSubmit = {handleLogin}>Login</button>
             </form>
         </div>
     )

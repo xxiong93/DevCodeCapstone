@@ -39,7 +39,7 @@ export default function DisplayTrips(props) {
 //i need to show at least one trip to start
     return(
         <div>
-            <p>{props.hello}</p>
+            <h3>{props.viewTrips}</h3>
             <div>
                 <table>
                     <tbody id="tripTable">

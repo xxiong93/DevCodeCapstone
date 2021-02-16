@@ -152,7 +152,7 @@ function SearchActivities() {
               <table id="activity-states">
                 <tbody>
                   <tr>
-                    <td type='text' value={search.data[0].parks[0].states}>{search.data[0].parks[0].states}</td>
+                    {/* <td type='text' value={search.data[0].parks[0].states}>{search.data[0].parks[0].states}</td> */}
                   </tr>
                 </tbody>
               </table>

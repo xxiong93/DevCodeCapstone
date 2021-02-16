@@ -24,8 +24,9 @@ class ImageUpload extends Component {
 		// const newfile = this.state.file;
         const formData = new FormData();
         formData.append('name', this.state.file, this.state.file.name);
-       console.log("line 29", this.state.file.name)
-       console.log(formData);
+      	console.log("line 29", this.state.file.name)
+		console.log(formData);
+		   
 		axios.post(newurl, formData)
             .then(response => console.log('line 30' + response))
             .catch(err => {
@@ -55,7 +56,7 @@ class ImageUpload extends Component {
         }).catch(error => console.log(error)
 
         )
-        console.log("hit")
+        console.log("success")
     }
     render() {
         return (
@@ -75,39 +76,3 @@ class ImageUpload extends Component {
     }
 }
 export default ImageUpload;
-
-
-
-
-        // let reader = new FileReader();
-        // let file = e.target.files[0];
-        // console.log(e.target.files[0]);
-        // reader.onloadend = () => {
-        //     this.setState({
-        //         file: file,
-        //         imagePreview_Url: reader.result
-        //     });
-            
-        // }
-        // reader.readAsDataURL(file)
-
-        // const [file, setFile] = useState();
-        // const [filename, setFilename] = useState();
-
-        // handleChange(event) => {
-                // event.preventDefault();
-        //     setFile(e.target.files[0]);
-        // }
-
-        // handleSubmit = event => {
-        //     event.preventDefault();
-
-        //     const newurl = API_PICTURE_URL + '/upload';
-
-        //     const formData = new FormData();
-        //     formData.append('image', file, this.state.file.name);
-
-        // }
-
-
-

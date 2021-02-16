@@ -77,7 +77,7 @@ function NewTrip() {
             </div>
             <div className='showTrips' id='displayTrips' >
                 {console.log(allTrips)}
-               {loading ? <div>loading...</div> : <DisplayTrips allTrips={allTrips} hello={'hello table'}/>}
+               {loading ? <div>loading...</div> : <DisplayTrips allTrips={allTrips} viewTrips={'Trips added to list'}/>}
             </div>
         </div>
 
