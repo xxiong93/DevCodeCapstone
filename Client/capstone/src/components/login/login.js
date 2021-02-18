@@ -3,9 +3,11 @@ import axios from 'axios';
 import {API_BASE_URL, API_LOGIN_URL} from '../../api/api.js';
 
 
-function Login (event) {
+function Login (props) {
     const [login, setLogin] = useState({ email: '', password: '' });
-        function getUser(){
+        
+    
+    function getUser(){
             const newurl = API_BASE_URL;
             axios({
                 method: 'get',
@@ -13,7 +15,7 @@ function Login (event) {
             }).then((res) => {
                 res.data.forEach(user => {
                     if(login.email === user.email){
-                        event.setCurrentUser(user._id);                                                
+                        props.setCurrentUser(user._id);                                                
                     }
                 });
                 console.log(res.data);
@@ -25,7 +27,7 @@ function Login (event) {
     const handleChange = (event) => {
         let data = event.target.name;
         setLogin(login => ({...login,
-            [event.target.name]: event.target.value
+            data: event.target.value
         }))
         console.log(login);
     }

@@ -62,7 +62,7 @@ class ImageUpload extends Component {
         return (
             <div style={{paddingTop:40}}>
                 <div>
-                    <form action='/upload' method="post" enctype="multipart/form-data">
+                    <form action='http://localhost:5000/api/pictures/upload' method="POST" enctype="multipart/form-data">
                         <input type="file" name="image" />
                         <input type='submit'></input>
                         {/* <button onClick={this.SaveSubmit}>Save/Upload Image in DB</button>

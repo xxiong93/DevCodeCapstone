@@ -16,7 +16,7 @@ function NewTrip() {
         let data = event.target.name;
         setTrip(trip =>({...trip,
             [event.target.name]: event.target.value}))
-        console.log(trip);
+        // console.log(trip);
     }
 
     const handleSubmit = (event) => {
@@ -28,9 +28,9 @@ function NewTrip() {
             parkName: trip.parkName,
             stateName: trip.stateName
         }).then(response => {
-            console.log(response)
+            // console.log(response)
         }).catch(error => {
-            console.log(error);
+            // console.log(error);
         });
     }
 
@@ -43,16 +43,16 @@ function NewTrip() {
         .then(response => {
             setAllTrips(response.data)
 
-            console.log(allTrips[4].parkName);
-            const getParks = allTrips.map((item, index, array) => {
-                return item.parkName;
-            })
-            const getStates = allTrips.map((item, index, array) => {
-                return item.stateName;
-            })
-            console.log(getParks[1] + ' ' + getStates[1]);
-            console.log('line 53');
-            return (getParks, getStates)
+            // console.log(allTrips[3].parkName);
+            // const getParks = allTrips.map((item, index, array) => {
+            //     return getParks.parkName;
+            // })
+            // const getStates = allTrips.map((item, index, array) => {
+            //     return getParks.stateName;
+            // })
+            // console.log(getParks[0] + ' ' + getStates[0]);
+            // console.log('line 53');
+            return (response.data)
         })
         .catch(error => {
             console.log(error);
@@ -73,7 +73,7 @@ function NewTrip() {
     // const buildTable = () => {
     //     const table = document.getElementById('tripTable')
 
-    //     for(let i=0; i<getParkNames.length; i++){
+    //     for(let i=0; i<allTrips.length; i++){
     //         let row = `<tr>
     //                         <td>${getParkNames[i]} ${getStateNames[i]}</td>
     //                    <tr>
@@ -87,7 +87,7 @@ function NewTrip() {
         showTrips();
         setLoading(false);
         // buildTable();
-    }, [])
+    },[])
     return(
         <div>
             <div>
@@ -95,17 +95,21 @@ function NewTrip() {
                 <input type='text' placeholder='Park Name' name='parkName' id='newPark' value={trip.parkName} onChange={handleChange}></input>
                 <br/>
                 <input type='text' placeholder='State' name='stateName' id='newState' value={trip.stateName} onChange={handleChange}></input>
-                <button type="submit" className='submit-button' onClick={handleSubmit}>Add</button>
+                <button type="submit" className='submit-button' >Add</button>
             </form>
             </div>
             <div className='showTrips' id='displayTrips' >
-                {console.log(allTrips)}
+                {/* {console.log(allTrips)} */}
                {loading ? <div>loading...</div> : <DisplayTrips allTrips={allTrips} viewTrips={'Trips added to list'}/>}
             </div>
             <br/>
             <div>
                 <table>
                     <tbody id="tripTable">
+                        <tr>
+                            {/* <td>{getParkNames[0]}</td>
+                            <td>{getStateNames[0]}</td> */}
+                        </tr>
                     </tbody>
                 </table>
             </div>

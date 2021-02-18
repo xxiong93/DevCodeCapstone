@@ -60,36 +60,7 @@ function SearchActivities() {
   };
 
 
-  // const getParkNames = props.allTrips.map((item, index, array) => {
-    //     return item.parkName;
-    //     console.log(item.parkName);
-    // })
-    // const getStateNames = props.allTrips.map((item, index, array) => {
-    //     return item.stateName;
-    //     console.log(item.stateName);
-    // })
-   
-    // const numItems = (event) => {
-    //     const num = event.target.value;
-    //     return num
-    // }
-
-    // const buildTable = (props) => {
-    //     const table = document.getElementById('tripTable')
-
-    //     for(let i=0; i<getParkNames.length; i++){
-    //         let row = `<tr>
-    //                         <td>${getParkNames[i]} ${getStateNames[i]}</td>
-    //                    <tr>
-    //                    `
-
-    //         table.innerHTML += row
-    //     }
-    // }
-   
-    // useEffect(()=>{
-    //     buildTable();
-    // }, [])
+  
   useEffect(() => {
     setLoading(false);
   });
