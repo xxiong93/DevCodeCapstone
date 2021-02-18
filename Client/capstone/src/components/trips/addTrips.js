@@ -36,9 +36,7 @@ function NewTrip() {
 
 
     const showTrips = (event) => {
-    //use map() function for saving response data or use an array
-    //look at axios and api calls to only disply the data i want to 
-    //check 
+
     axios.get('http://localhost:5000/api/trips')
         .then(response => {
             setAllTrips(response.data)
