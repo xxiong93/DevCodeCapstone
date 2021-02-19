@@ -38,6 +38,7 @@ export class MapContainer extends Component {
       .catch((error) => console.error("Error", error));
   };
 
+
   onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
