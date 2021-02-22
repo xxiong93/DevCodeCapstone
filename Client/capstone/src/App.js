@@ -21,7 +21,7 @@ function App() {
       <Login />
       <br />
       <Register /> 
-       <Photos />
+      <Photos />
       <NewTrip />
       <SearchParks />
       <UserLocation />

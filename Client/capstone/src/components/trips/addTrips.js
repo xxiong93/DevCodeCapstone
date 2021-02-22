@@ -48,10 +48,11 @@ function NewTrip() {
   };
 
   const parkVisited = () => {
-    document.getAnimations('tripName').style.color='forest green'
 
-    }
-  
+      document.getElementById('tripName').style = "Color: red";
+   
+   
+  }
 
   const getParkNames = allTrips.map((item, index, array) => {
     return item.parkName;
@@ -67,7 +68,6 @@ function NewTrip() {
     for (let i = 0; i < allTrips.length; i++) {
       let row = `<tr>
                     <td id='tripName'>${getParkNames[i]} ${getStateNames[i]}
-                    <button id='visitedPark' >Visited</button>
                     </td>
                 <tr>
                 `;
@@ -111,6 +111,8 @@ function NewTrip() {
       </div>
       <div className="showTrips" id="displayTrips">
         <button onClick={buildTripTable}>View Trips</button>
+        <button id='visitedPark' onClick={parkVisited}>Park Visited</button>
+
       </div>
       <br />
       <div>

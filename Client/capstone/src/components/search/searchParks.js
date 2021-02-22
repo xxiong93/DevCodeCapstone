@@ -60,7 +60,6 @@ function SearchParks({match}) {
                     </td>
                     <td>$${search[i].entranceFees[0].cost}
                     </td>
-                
                     <td>${search[i].operatingHours[0].standardHours.sunday}
                     </td>
                     
