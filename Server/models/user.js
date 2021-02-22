@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
+const CORS = require('cors');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
     userName: {type: String, required: true, minlength: 5, maxlength: 255 },
-    email: {type: String, unique: true, required: false},
+    email: {type: String, required: false},
     password: {type: String, required: false}
 });
 

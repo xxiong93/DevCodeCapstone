@@ -3,76 +3,69 @@ import axios from "axios";
 import { NPS_BASE_URL } from "../../api/api";
 // import {NPS_KEY} from '../../../src/keys.js';
 
-function SearchParks() {
+function SearchParks({match}) {
   const [search, setSearch] = useState([]);
   const [parkActivity, setActivity] = useState({ query: '' });
-  const [stateName, setStateName] = useState();
+  const [stateName, setStateName] = useState('');
   const [loading, setLoading] = useState(true);
 
-  //i need filter to search to only show specific info
-  //i need a function that will allow user to specify state
-  //i need a fucntion that wil specify number of options shown
-  // const findPark = () => {
-    
-  // };
 
-  //i need a variable that will hold this search data
-  //i need this variable to specify the activity from a state
   let handleChange = (event) => {
-    // let data = event.target.name;
-    // setActivity((search) => ({
-    //   ...search,
-    //   [data]: event.target.value,
-    // }));
+
     setActivity({ query: event.target.value });
-    console.log(parkActivity);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // findPark();
-    const params = {
+    
+    getParkData();    
+    parksTable();
+  }
+
+  const getParkData = async () => {
+     const params = {
       apiKey: "atJaeoob0GDLz2RZbFc2s6IENE8uJOEpJJ8Kyesz",
       query: parkActivity.query,
       stateCode: "",
-      limit: 10,
+      limit: 5,
       start: 0,
     };
-    console.log(params.query);
-    // const api = `https://developer.nps.gov/api/v1/activities/parks?`;
-    // const parkQ = `q=` + parkActivity.activity;
-    // const parkS = `stateCode=` + parkActivity.states;
-    //function that will filter for state withing the array, response.data.data[0].parks[need this value]
 
-    const url = `https://developer.nps.gov/api/v1/parks?API_KEY=${params.apiKey}&stateCode=WI&q=${params.query}`;
-    console.log(url);
-    axios
-      .get(url)
-      .then((response) => {
-        setSearch(response.data);
-        console.log("this line");
-        for (let i = 0; i < search.data.length; i++){
-          console.log(search.data[i].fullName);
-
-        }
+    const url = `https://developer.nps.gov/api/v1/parks?API_KEY=${params.apiKey}&stateCode=MN&q=${params.query}&limit=${params.limit}`;
+     await axios.get(url)
+      .then(parkData => {
+        // console.log(parkData)
+        setSearch(parkData.data.data);
+        console.log(parkData.data.data);
+        console.log(search[0].entranceFees[0].cost);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  
 
   const parksTable = () => {
     const table = document.getElementById("park-states");
-    for (let i = 0; i < search.data.length; i++) {
-      let row = `<tr>
-                    <td>${search.data[i].fullName}
-                    ${search.data[i].entranceFees[i].cost}
-                    ${search.data[i].activities[i].name}
-                    ${search.data[i].operatingHours[i].standardHours}  
+    
+    for (let i = 0; i < search.length; i++) {
+      let row = `<th>Park Name</th><th>State</th><th>Admission Fee</th><th>Open Hours Sun-Sat</th>
+
+                <tr>
                     
+                    <td>${search[i].fullName}        
                     </td>
-                <tr>`;
+                    <td>${search[i].states}
+                    </td>
+                    <td>$${search[i].entranceFees[0].cost}
+                    </td>
+                
+                    <td>${search[i].operatingHours[0].standardHours.sunday}
+                    </td>
+                    
+
+                </tr>`;
 
       table.innerHTML += row;
     }
@@ -80,8 +73,10 @@ function SearchParks() {
 
   useEffect(() => {
     setLoading(false);
+    getParkData();
     // parksTable();
-  });
+  },[])
+
 
   return (
     <div>
@@ -99,12 +94,12 @@ function SearchParks() {
                     className="search-input"
                     id="activities"
                     name="activity"
-                    placeholder="Find a park"
+                    placeholder="Find an activity"
                     value={parkActivity.query}
                     onChange={handleChange}
                   ></input>
                 </label>
-                <label className="state-search-label" for="search">
+                {/* <label className="state-search-label" for="search">
                   <input
                     type="text"
                     className="state-input"
@@ -113,18 +108,18 @@ function SearchParks() {
                     placeholder="Choose a state"
                     onChange={handleChange}
                   ></input>
-                </label>
-                <input type='submit' value='Search' onClick={parksTable}></input>
+                </label> */}
+                <input type='submit' value='Search' ></input>
               </div>
               <div>
               <table id="park-states" >
                 <tbody>
                   <tr>
+                    {/* <td>{JSON.stringify(search.data[]0)}</td> */}
                   </tr>
                 </tbody>
               </table>
             </div>
-
             </form>
             <div id="search-display">
               <p className="search-results" value={search}></p>
@@ -134,8 +129,8 @@ function SearchParks() {
       </div>
     </div>
   );
-}
 
+              }
 export default SearchParks;
 
 

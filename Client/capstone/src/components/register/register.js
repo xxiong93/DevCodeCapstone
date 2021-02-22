@@ -43,7 +43,7 @@ function Register(props) {
                 email: register.email
             }
         }).then(() => {
-            getCurrentUser();
+            props.getCurrentUser();
         })
     }
         return (            

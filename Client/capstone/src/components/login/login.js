@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import {API_BASE_URL, API_LOGIN_URL} from '../../api/api.js';
+import { useHistory } from 'react-router-dom';
 
 
 function Login (props) {
     const [login, setLogin] = useState({ email: '', password: '' });
-        
+    let history = useHistory();
     
     function getUser(){
             const newurl = API_BASE_URL;
@@ -27,7 +28,7 @@ function Login (props) {
     const handleChange = (event) => {
         let data = event.target.name;
         setLogin(login => ({...login,
-            data: event.target.value
+            [data]: event.target.value
         }))
         console.log(login);
     }
@@ -47,13 +48,14 @@ function Login (props) {
             // console.log(response);
             if (response.status === 200) {
                 sessionStorage.setItem('sessionId', response.data);
+                history.push('/home')
             }
-            getUser();
+            props.getUser();
             //console.log(sessionStorage)
         });
     }
     return(
-        <div>
+        <div className='loginInfo'>
             <h1>Login</h1>
             <form className = "login-form" onSubmit = {handleLogin}>
                 <label htmlFor = "loginEmail">Email</label>
@@ -67,7 +69,7 @@ function Login (props) {
                 >
 
                 </input>
-                <label htmlFor = "passwordLogin">Password</label>
+                <label htmlFor = "loginPassword">Password</label>
                 <input
                     type = "text"
                     id = "loginPassword"

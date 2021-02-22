@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { API_TRIP_URL } from "../../api/api.js";
 import DisplayTrips from "./displayTrips.js";
+
 import axios from "axios";
 
 function NewTrip() {
   const [trip, setTrip] = useState({ parkName: "", stateName: "" });
   const [allTrips, setAllTrips] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [viewingTable, setViewingTable] = useState();
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -16,12 +16,12 @@ function NewTrip() {
     // console.log(trip);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const url = API_TRIP_URL + "/new";
 
-    axios
+    await axios
       .post(url, {
         parkName: trip.parkName,
         stateName: trip.stateName,
@@ -47,12 +47,11 @@ function NewTrip() {
       });
   };
 
-  //   const deleteTrip = () => {
-  //       axios.delete("http://localhost:5000/api/trips")
-  //       .then((response) => {
+  const parkVisited = () => {
+    document.getAnimations('tripName').style.color='forest green'
 
-  //       })
-  //   }
+    }
+  
 
   const getParkNames = allTrips.map((item, index, array) => {
     return item.parkName;
@@ -67,23 +66,25 @@ function NewTrip() {
     const table = document.getElementById("tripTable");
     for (let i = 0; i < allTrips.length; i++) {
       let row = `<tr>
-                            <td>${getParkNames[i]} ${getStateNames[i]}
-                            <button>delete</button>
-
-                            </td>
-                <tr>`;
+                    <td id='tripName'>${getParkNames[i]} ${getStateNames[i]}
+                    <button id='visitedPark' >Visited</button>
+                    </td>
+                <tr>
+                `;
 
       table.innerHTML += row;
     }
+
   };
 
   useEffect(() => {
     showTrips();
     setLoading(false);
-    // buildTripTable();
   }, []);
+
   return (
     <div>
+      <h2>Trip Planner</h2>
       <div>
         <form onSubmit={handleSubmit}>
           <input

@@ -14,6 +14,14 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/:userId", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.userId);
+        return res.send(user);
+    } catch (ex) {
+        return res.status(500).send(`Internal server Error: ${ex}`);
+    }
+});
 
 router.post('/new', async (req,res) => {
     try {

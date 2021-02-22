@@ -14,14 +14,33 @@ export class MapContainer extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-
+      // latitude: null,
+      // longitude: null,
       mapCenter: {
         lat: 43.038902,
         lng: -87.906471,
       },
     };
+    // this.getLocation = this.getLocation.bind(this);
+    // this.getCoordinates = this.getCoordinates.bind(this);
   }
 
+  // getLocation() {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(this.getCoordinates);
+  //   } else {
+  //     alert = "Geolocation is not supported by this browser.";
+  //   }
+  // }
+
+  // getCoordinates(position){
+  //   console.log(position);
+  //   this.setState({
+  //     latitude: position.coords.latitude,
+  //     longitude: position.coords.longitude
+  //   })
+  // }
+  
   handleChange = (address) => {
     this.setState({ address });
   };
@@ -55,6 +74,7 @@ export class MapContainer extends Component {
     }
   };
 
+  
   render() {
     return (
       <div id="googleMaps">
@@ -76,6 +96,7 @@ export class MapContainer extends Component {
                   className: "location-search-input",
                 })}
               />
+              {/* <button onClick={this.getLocation}>Get Current Location</button> */}
               <div className="autocomplete-dropdown-container">
                 {loading && <div>Loading...</div>}
                 {suggestions.map((suggestion) => {

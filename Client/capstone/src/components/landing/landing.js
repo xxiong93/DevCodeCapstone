@@ -2,7 +2,7 @@ import React, { useState }from 'react';
 import Login from "../login/login";
 import Register from "../register/register";
 
-function Landing () {
+function Landing (props) {
     const [currentUser, setCurrentUser] = useState();
 
     return (
