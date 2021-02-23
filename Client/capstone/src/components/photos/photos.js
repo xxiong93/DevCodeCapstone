@@ -24,8 +24,8 @@ class ImageUpload extends Component {
 		// const newfile = this.state.file;
         const formData = new FormData();
         formData.append('name', this.state.file, this.state.file.name);
-      	console.log("line 29", this.state.file.name)
-		console.log(formData);
+      	// console.log("line 29", this.state.file.name)
+		// console.log(formData);
 		   
 		axios.post(newurl, formData)
             .then(response => console.log('line 30' + response))

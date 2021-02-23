@@ -18,12 +18,13 @@ import {
 function App() {
   return (
     <div>
+      <h1>National Park Planner</h1>
       <Login />
       <br />
       <Register /> 
       <Photos />
-      <NewTrip />
       <SearchParks />
+      <NewTrip />
       <UserLocation />
       <Home/>
       {/* <Router>

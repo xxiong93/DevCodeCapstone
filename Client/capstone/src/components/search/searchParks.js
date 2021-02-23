@@ -31,7 +31,7 @@ function SearchParks({match}) {
       start: 0,
     };
 
-    const url = `https://developer.nps.gov/api/v1/parks?API_KEY=${params.apiKey}&stateCode=MN&q=${params.query}&limit=${params.limit}`;
+    const url = `https://developer.nps.gov/api/v1/parks?API_KEY=${params.apiKey}&stateCode=CA&q=${params.query}&limit=${params.limit}`;
      await axios.get(url)
       .then(parkData => {
         // console.log(parkData)

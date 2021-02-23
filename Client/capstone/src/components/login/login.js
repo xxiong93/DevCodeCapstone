@@ -56,7 +56,7 @@ function Login (props) {
     }
     return(
         <div className='loginInfo'>
-            <h1>Login</h1>
+            <h2>Login</h2>
             <form className = "login-form" onSubmit = {handleLogin}>
                 <label htmlFor = "loginEmail">Email</label>
                 <input 

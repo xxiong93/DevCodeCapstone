@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API_TRIP_URL } from "../../api/api.js";
-import DisplayTrips from "./displayTrips.js";
+// import DisplayTrips from "./displayTrips.js";
 
 import axios from "axios";
 
@@ -37,7 +37,7 @@ function NewTrip() {
   const showTrips = (event) => {
     axios
       .get("http://localhost:5000/api/trips")
-      .then((response) => {
+      .then(response => {
         setAllTrips(response.data);
         return response.data;
       })
@@ -50,6 +50,7 @@ function NewTrip() {
   const parkVisited = () => {
 
       document.getElementById('tripName').style = "Color: red";
+ 
    
    
   }
@@ -66,11 +67,13 @@ function NewTrip() {
   const buildTripTable = () => {
     const table = document.getElementById("tripTable");
     for (let i = 0; i < allTrips.length; i++) {
-      let row = `<tr>
-                    <td id='tripName'>${getParkNames[i]} ${getStateNames[i]}
-                    </td>
+      let row = `<th>Park Name</th>  <th>State</th>
                 <tr>
-                `;
+                    <td id='tripName'>${getParkNames[i]}
+                    </td>
+                    <td >${getStateNames[i]}
+                    </td>
+                <tr>`;
 
       table.innerHTML += row;
     }

@@ -49,7 +49,7 @@ function Register(props) {
         return (            
             <div className = "registerInfo">
               <div>
-                <h1 className = "registerTitle" >Register</h1>
+                <h2 className = "registerTitle" >Register</h2>
               </div>
                 <form className = "form-register form-floating" onSubmit={handleRegister}>
                     <label htmlFor = "registerName">Name </label>
