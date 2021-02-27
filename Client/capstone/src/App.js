@@ -6,6 +6,7 @@ import SearchParks from "./components/search/searchParks.js";
 import UserLocation from "./components/location/location.js";
 import Register from "./components/register/register.js";
 import Landing from "./components/landing/landing.js";
+import CurrentLocation from "./components/location/currentLocation.js";
 import Home from "./Home";
 // import { NavigationBar } from "./components/navBar/navBar.js";
 import {
@@ -19,29 +20,28 @@ function App() {
   return (
     <div>
       <h1>National Park Planner</h1>
-      <Login />
+      {/* <Login />
       <br />
-      <Register /> 
+      <Register />
       <Photos />
       <SearchParks />
       <NewTrip />
+      <CurrentLocation />
+
       <UserLocation />
-      <Home/>
-      {/* <Router>
+      <Home /> */}
+      <Router>
         <Home />
-
-        <Route path="/landing" component={Landing}>
-          <Route path="/parks" component={SearchParks} />
-          <Route path="/parks" component={Photos} />
-          <Route path="/parks" component={NewTrip} />
-
-          <Switch>
-            <Route path="/home" exact component={Home} />
-            <Route path="/activities" component={UserLocation} />
-            <Route path="/logout" component={Landing} />
-          </Switch>
-        </Route>
-      </Router> */}
+        <Switch>
+          <Route path="/parks" component={SearchParks, Photos, NewTrip} />
+          {/* <Route path="/parks" component={Photos} />
+          <Route path="/parks" component={NewTrip} /> */}
+          <Route path="/location" component={CurrentLocation} />
+          <Route path="/home" exact component={Home} />
+          <Route path="/activities" component={UserLocation} />
+          <Route path="/logout" component={Landing} />
+        </Switch>
+      </Router>
     </div>
   );
 }

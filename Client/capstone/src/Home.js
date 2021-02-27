@@ -1,8 +1,4 @@
 import React from 'react';
-import Photos from "./components/photos/photos.js";
-import NewTrip from "./components/trips/addTrips.js";
-import SearchParks from "./components/search/searchParks.js";
-import UserLocation from "./components/location/location.js";
 
 import {Link, BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
 
@@ -13,18 +9,20 @@ function Home() {
     <Router>
     <div>
       <nav>
-            {/* <Link to="/">Home</Link> */}
-            <button onClick={() => {
+            <Link to="/">Home</Link>
+            {/* <button onClick={() => {
                 history.push('/')
-            }}>Home</button>
-            {/* <Link to="/parks">Search for park on a map</Link> */}
-            <button onClick={() => {
+            }}>Home</button> */}
+            <Link to="/parks">Search for park on a map</Link>
+            {/* <button onClick={() => {
                 history.push('/parks')
-            }}>Park Search</button>
-            {/* <Link to="/activities">Search for activities in parks</Link> */}
-            <button onClick={() => {
+            }}>Park Search</button> */}
+            <Link to="/activities">Search for activities</Link>
+            {/* <button onClick={() => {
                 history.push('/activities')
-            }}>Activities</button>
+            }}>Activities</button> */}
+            <Link to="/location">Find my location</Link>
+
       </nav>
 
     </div>

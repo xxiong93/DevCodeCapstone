@@ -4,6 +4,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import {GOOGLE_MAPS_KEY} from '../../keys.js';
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -17,30 +18,34 @@ export class MapContainer extends Component {
       // latitude: null,
       // longitude: null,
       mapCenter: {
-        lat: 43.038902,
-        lng: -87.906471,
+        lat: null,
+        lng: null,
       },
     };
     // this.getLocation = this.getLocation.bind(this);
     // this.getCoordinates = this.getCoordinates.bind(this);
   }
 
-  // getLocation() {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition(this.getCoordinates);
-  //   } else {
-  //     alert = "Geolocation is not supported by this browser.";
-  //   }
-  // }
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.getCoordinates);
+    } else {
+      alert = "Geolocation is not supported by this browser.";
+    }
+  }
 
-  // getCoordinates(position){
-  //   console.log(position);
-  //   this.setState({
-  //     latitude: position.coords.latitude,
-  //     longitude: position.coords.longitude
-  //   })
-  // }
+  getCoordinates(position){
+    console.log(position);
+    this.setState({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    })
+  }
   
+  getCurrentLocation = (position) => {
+    this.setState({
+    })
+  }
   handleChange = (address) => {
     this.setState({ address });
   };
@@ -56,6 +61,7 @@ export class MapContainer extends Component {
       })
       .catch((error) => console.error("Error", error));
   };
+
 
 
   onMarkerClick = (props, marker, e) =>
@@ -156,5 +162,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyDNemoNuTAigD11NjcZT8-wyLrcEOL0pc0",
+  apiKey: GOOGLE_MAPS_KEY,
 })(MapContainer);

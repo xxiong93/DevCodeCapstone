@@ -3,7 +3,7 @@ import axios from "axios";
 import { NPS_BASE_URL } from "../../api/api";
 // import {NPS_KEY} from '../../../src/keys.js';
 
-function SearchParks({match}) {
+function SearchParks() {
   const [search, setSearch] = useState([]);
   const [parkActivity, setActivity] = useState({ query: '' });
   const [stateName, setStateName] = useState('');
