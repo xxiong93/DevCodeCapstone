@@ -37,7 +37,7 @@ function App() {
           {/* <Route path="/parks" component={Photos} />
           <Route path="/parks" component={NewTrip} /> */}
           <Route path="/location" component={CurrentLocation} />
-          <Route path="/home" exact component={Home} />
+          <Route path="/" exact component={Landing} />
           <Route path="/activities" component={UserLocation} />
           <Route path="/logout" component={Landing} />
         </Switch>
