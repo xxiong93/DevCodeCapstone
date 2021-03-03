@@ -5,7 +5,8 @@ const config = require('config');
 
 const tripSchema = new mongoose.Schema({
     parkName: { type: String, required: true, maxlength: 100 },
-    stateName: { type: String, required: false, }
+    stateName: { type: String, required: false, },
+    parkId: {type: String}
 });
 
 const Trip = mongoose.model('Trip', tripSchema);
@@ -13,7 +14,8 @@ const Trip = mongoose.model('Trip', tripSchema);
 function validateTrip(trip) {
     const schema = Joi.object({
         parkName: Joi.string().required().max(100),
-        stateName: Joi.string().required()
+        stateName: Joi.string(),
+        parkId: Joi.string()
     });
     return schema.validate(trip);
 }

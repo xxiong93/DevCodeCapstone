@@ -8,7 +8,8 @@ import Register from "./components/register/register.js";
 import Landing from "./components/landing/landing.js";
 import CurrentLocation from "./components/location/currentLocation.js";
 import Home from "./Home";
-// import { NavigationBar } from "./components/navBar/navBar.js";
+import Planner from "./components/planner/planner.js";
+
 import {
   Route,
   BrowserRouter as Router,
@@ -33,13 +34,10 @@ function App() {
       <Router>
         <Home />
         <Switch>
-          <Route path="/parks" component={SearchParks, Photos, NewTrip} />
-          {/* <Route path="/parks" component={Photos} />
-          <Route path="/parks" component={NewTrip} /> */}
+          <Route path="/parks" component={Planner} />
           <Route path="/location" component={CurrentLocation} />
           <Route path="/" exact component={Landing} />
           <Route path="/activities" component={UserLocation} />
-          <Route path="/logout" component={Landing} />
         </Switch>
       </Router>
     </div>

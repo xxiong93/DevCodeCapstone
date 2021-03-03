@@ -39,6 +39,7 @@ function NewTrip() {
       .get("http://localhost:5000/api/trips")
       .then(response => {
         setAllTrips(response.data);
+        console.log(allTrips);
         return response.data;
       })
       .catch((error) => {

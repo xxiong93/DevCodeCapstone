@@ -8,16 +8,16 @@ function Home() {
     return (
     <Router>
     <div>
-      <nav>
+      <nav id='navigation-bar'>
             <Link to="/">Home</Link>
             {/* <button onClick={() => {
                 history.push('/')
             }}>Home</button> */}
-            <Link to="/parks">Search for park on a map</Link>
+            <Link to="/parks">Activities planner</Link>
             {/* <button onClick={() => {
                 history.push('/parks')
             }}>Park Search</button> */}
-            <Link to="/activities">Search for activities</Link>
+            <Link to="/activities">Search for parks on a map</Link>
             {/* <button onClick={() => {
                 history.push('/activities')
             }}>Activities</button> */}

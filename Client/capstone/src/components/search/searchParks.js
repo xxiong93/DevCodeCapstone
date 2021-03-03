@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NPS_BASE_URL } from "../../api/api";
+import { API_TRIP_URL } from "../../api/api.js";
+
 // import {NPS_KEY} from '../../../src/keys.js';
 
 function SearchParks() {
   const [search, setSearch] = useState([]);
-  const [parkActivity, setActivity] = useState({ query: '' });
-  const [stateName, setStateName] = useState('');
+  const [parkActivity, setActivity] = useState({ query: "" });
+  const [parkInfo, setParkInfo] = useState('');
   const [loading, setLoading] = useState(true);
 
-
   let handleChange = (event) => {
-
     setActivity({ query: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    getParkData();    
+
+    getParkData();
     parksTable();
-  }
+  };
 
   const getParkData = async () => {
-     const params = {
+    const params = {
       apiKey: "atJaeoob0GDLz2RZbFc2s6IENE8uJOEpJJ8Kyesz",
       query: parkActivity.query,
       stateCode: "",
@@ -31,30 +31,46 @@ function SearchParks() {
       start: 0,
     };
 
-    const url = `https://developer.nps.gov/api/v1/parks?API_KEY=${params.apiKey}&stateCode=CA&q=${params.query}&limit=${params.limit}`;
-     await axios.get(url)
-      .then(parkData => {
-        // console.log(parkData)
+    const url = `https://developer.nps.gov/api/v1/parks?API_KEY=${params.apiKey}&q=${params.query}&limit=${params.limit}`;
+    await axios
+      .get(url)
+      .then((parkData) => {
         setSearch(parkData.data.data);
         console.log(parkData.data.data);
-        console.log(search[0].entranceFees[0].cost);
+        // console.log(search[0].entranceFees[0].cost);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  const addPark = async () => {
+    let url = API_TRIP_URL + "/new";
+    for(let i = 0; i < search.length; i++){
+    await axios
+      .post(url, {
+        parkName: search[i].fullName,
+        stateName: search[i].states,
+        parkId: search[i].id,
+        
+    })
+      .then((response) => {
+        // console.log(response)
+      })
+      .catch((error) => {
+        // console.log(error);
+      });
+    }
 
-  
+  };
 
   const parksTable = () => {
     const table = document.getElementById("park-states");
-    
     for (let i = 0; i < search.length; i++) {
       let row = `<th>Park Name</th><th>State</th><th>Admission Fee</th><th>Open Hours Sun-Sat</th>
+                  <button id='park-info' >Add park to planner</button>
 
-                <tr>
-                    
-                    <td>${search[i].fullName}        
+                  <tr  >
+                    <td>${search[i].fullName} 
                     </td>
                     <td>${search[i].states}
                     </td>
@@ -67,6 +83,7 @@ function SearchParks() {
                 </tr>`;
 
       table.innerHTML += row;
+      table.addEventListener('click', addPark)
     }
   };
 
@@ -74,8 +91,7 @@ function SearchParks() {
     setLoading(false);
     getParkData();
     // parksTable();
-  },[])
-
+  }, []);
 
   return (
     <div>
@@ -93,32 +109,20 @@ function SearchParks() {
                     className="search-input"
                     id="activities"
                     name="activity"
-                    placeholder="Find an activity"
+                    placeholder="Enter State or Activity"
                     value={parkActivity.query}
                     onChange={handleChange}
                   ></input>
                 </label>
-                {/* <label className="state-search-label" for="search">
-                  <input
-                    type="text"
-                    className="state-input"
-                    id="states"
-                    name="state"
-                    placeholder="Choose a state"
-                    onChange={handleChange}
-                  ></input>
-                </label> */}
-                <input type='submit' value='Search' ></input>
+                <input type="submit" value="Search"></input>
               </div>
               <div>
-              <table id="park-states" >
-                <tbody>
-                  <tr>
-                    {/* <td>{JSON.stringify(search.data[]0)}</td> */}
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                <table id="park-states">
+                  <tbody>
+                    <tr></tr>
+                  </tbody>
+                </table>
+              </div>
             </form>
             <div id="search-display">
               <p className="search-results" value={search}></p>
@@ -128,13 +132,11 @@ function SearchParks() {
       </div>
     </div>
   );
-
-              }
+}
 export default SearchParks;
 
-
-
-            {/* <select name="state-ops" id="state-ops" form="search-activities">
+{
+  /* <select name="state-ops" id="state-ops" form="search-activities">
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
               <option value="AZ">Arizona</option>
@@ -185,4 +187,5 @@ export default SearchParks;
               <option value="WV">West Virginia</option>
               <option value="WI">Wisconsin</option>
               <option value="WY">Wyoming</option>
-            </select> */}
+            </select> */
+}

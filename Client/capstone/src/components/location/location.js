@@ -4,48 +4,25 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-import {GOOGLE_MAPS_KEY} from '../../keys.js';
+import { GOOGLE_MAPS_KEY } from "../../keys.js";
 
 export class MapContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       address: "",
-
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
       // latitude: null,
       // longitude: null,
       mapCenter: {
-        lat: null,
-        lng: null,
+        lat: 43.1088662,
+        lng: -88.0020493,
       },
     };
-    // this.getLocation = this.getLocation.bind(this);
-    // this.getCoordinates = this.getCoordinates.bind(this);
   }
 
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.getCoordinates);
-    } else {
-      alert = "Geolocation is not supported by this browser.";
-    }
-  }
-
-  getCoordinates(position){
-    console.log(position);
-    this.setState({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude
-    })
-  }
-  
-  getCurrentLocation = (position) => {
-    this.setState({
-    })
-  }
   handleChange = (address) => {
     this.setState({ address });
   };
@@ -56,31 +33,29 @@ export class MapContainer extends Component {
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
         console.log("Success", latLng);
-
+        console.log(address + "line 36");
         this.setState({ mapCenter: latLng });
       })
       .catch((error) => console.error("Error", error));
   };
 
-
-
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, event) =>
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
-      showingInfoWindow: true
+      showingInfoWindow: true,
     });
- 
-  onMapClicked = (props) => {
+
+  onMapClicked = (props, event) => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
-        activeMarker: null
-      })
+        activeMarker: null,
+      });
     }
+
   };
 
-  
   render() {
     return (
       <div id="googleMaps">
@@ -150,7 +125,8 @@ export class MapContainer extends Component {
 
           <InfoWindow
             marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
+            visible={this.state.showingInfoWindow}
+          >
             <div>
               <h1>{this.state.selectedPlace.name}</h1>
             </div>
