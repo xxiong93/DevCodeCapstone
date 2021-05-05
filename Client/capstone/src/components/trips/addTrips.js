@@ -17,7 +17,7 @@ function NewTrip() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const url = API_TRIP_URL + "/new";
 
@@ -84,6 +84,7 @@ function NewTrip() {
   useEffect(() => {
     showTrips();
     setLoading(false);
+    handleSubmit();
   }, []);
 
   return (
@@ -108,7 +109,7 @@ function NewTrip() {
             value={trip.stateName}
             onChange={handleChange}
           ></input>
-          <button type="submit" className="submit-button">
+          <button>
             Add trip
           </button>
         </form>
